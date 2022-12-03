@@ -1,9 +1,9 @@
 # HeadTracker_WebBLE
 Head Tracker Web BLE Site
 
-This is the code for the Headtracker Web BLE configurator. It is available at.
+This is the code for the Headtracker Web BLE configurator.
 
-Although not completed yet, it the below web link will pull daily from the main and release branchs
+Although not completed yet, the below web link will eventually pull daily from the main and future release branches.
 
 # Web Links
 
