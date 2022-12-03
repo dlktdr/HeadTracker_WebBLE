@@ -21,9 +21,9 @@
             <h1 class="modal-title fs-5">Connect to Head Tracker</h1>
           </div>
           <div class="modal-body py-0">
-            <p>Click connect below to connect to the Head Tracker<br><br>
-              Head Tracker will need to be in Bluetooth configuration mode. Hold center button and power up device. <br><br>
-              LED will fash Red, Green, Blue and repeat when waiting for a connection.
+            <p>
+              Head Tracker needs to be in Head mode to configure. You can force head mode on power up by holding down the center button, then press the reset button once<br><br>
+              In this mode the LED will fash Red, Green, Blue while waiting for a connection.
             </p>
           </div>
           <div class="modal-footer flex-column border-top-0">
@@ -119,6 +119,7 @@
           <div id="settings">
             <button class="btn btn-primary" id="saveButton" disabled>Save Changes to Flash</button>
             <button class="btn btn-primary" id="refreshValues">Download Values</button>
+            <button class="btn btn-danger disconnectButton">Disconnect</button>
             <table class='rangeTbl' id='tiltRange'>
               <tr><th colspan="3">Tilt</th></tr>
               <tr>
@@ -133,7 +134,27 @@
                 <td>Gain</td><td colspan="3"><input type='number' class='htInputField' step='0.01' id='inp_Tlt_Gain'></td>
               </tr>
               <tr>
-                <td>Channel Number</td><td colspan="3"><input type='number' class='htInputField' id='inp_TltCh'></td>
+                <td>Channel Number</td><td colspan="3">
+                  <select id="inp_TltCh">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
               </tr>
             </table><br>
             <table class='rangeTbl' id='rollRange'>
@@ -150,7 +171,27 @@
                 <td>Gain</td><td colspan="3"><input type='number' class='htInputField' step='0.01' id='inp_Rll_Gain'></td>
               </tr>
               <tr>
-                <td>Channel Number</td><td colspan="3"><input type='number' class='htInputField' id='inp_RllCh'></td>
+                <td>Channel Number</td><td colspan="3">
+                  <select id="inp_RllCh">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
               </tr>
             </table><br>
             <table class='rangeTbl' id='panRange'>
@@ -167,23 +208,237 @@
                 <td>Gain</td><td colspan="3"><input type='number' class='htInputField' step='0.01' id='inp_Pan_Gain'></td>
               </tr>
               <tr>
-                <td>Channel Number</td><td colspan="3"><input type='number' class='htInputField' id='inp_PanCh'></td>
+                <td>Channel Number</td><td colspan="3">
+                  <select id="inp_PanCh">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
               </tr>
             </table><br>
             <table id='settingsTable'>
               <tr><td class="hdr"></td></tr>
-              <tr><td>Alert Output Channel</td><td><input type='number' class='htInputField' id='inp_AlertCh'></td></tr>
-              <tr><td>PWM 0 Channel</td><td><input type='number' class='htInputField' id='inp_Pwm0'></td></tr>
-              <tr><td>PWM 1 Channel</td><td><input type='number' class='htInputField' id='inp_Pwm1'></td></tr>
-              <tr><td>PWM 2 Channel</td><td><input type='number' class='htInputField' id='inp_Pwm2'></td></tr>
-              <tr><td>PWM 3 Channel</td><td><input type='number' class='htInputField' id='inp_Pwm3'></td></tr>
-              <tr><td>Analog 0 Channel</td><td><input type='number' class='htInputField' id='inp_An0Ch'></td></tr>
-              <tr><td>Analog 1 Channel</td><td><input type='number' class='htInputField' id='inp_An1Ch'></td></tr>
-              <tr><td>Analog 2 Channel</td><td><input type='number' class='htInputField' id='inp_An2Ch'></td></tr>
-              <tr><td>Analog 3 Channel</td><td><input type='number' class='htInputField' id='inp_An3Ch'></td></tr>
-              <tr><td>Auxilary Function 0 Channel</td><td><input type='number' class='htInputField' id='inp_Aux0Ch'></td></tr>
-              <tr><td>Auxilary Function 1 Channel</td><td><input type='number' class='htInputField' id='inp_Aux1Ch'></td></tr>
-              <tr><td>Auxilary Function 2 Channel</td><td><input type='number' class='htInputField' id='inp_Aux2Ch'></td></tr>
+              <tr><td>Alert Output Channel</td>
+                <td>
+                  <select id="inp_AlertCh">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr><td>PWM 0 Channel</td>
+              <td>
+                <select id="inp_Pwm0">
+                  <option value="-1">Disabled</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                </select>
+              </td></tr>
+              <tr><td>PWM 1 Channel</td>
+                <td>
+                <select id="inp_Pwm1">
+                  <option value="-1">Disabled</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                </select>
+              </td>
+            </tr>
+              <tr><td>PWM 2 Channel</td>
+                <td>
+                  <select id="inp_Pwm2">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>PWM 3 Channel</td>
+                <td>
+                  <select id="inp_Pwm3">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td></tr>
+              <tr><td>Analog 0 Channel</td>
+                <td>
+                  <select id="inp_An0Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>Analog 1 Channel</td>
+                <td>
+                  <select id="inp_An1Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>Analog 2 Channel</td>
+                <td>
+                  <select id="inp_An2Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>Analog 3 Channel</td>
+                <td>
+                  <select id="inp_An3Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
               <tr><td>Analog 0 Gain</td><td><input type='number' class='htInputField' step='0.001' id='inp_An0Gain'></td></tr>
               <tr><td>Analog 1 Gain</td><td><input type='number' class='htInputField' step='0.001' id='inp_An1Gain'></td></tr>
               <tr><td>Analog 2 Gain</td><td><input type='number' class='htInputField' step='0.001' id='inp_An2Gain'></td></tr>
@@ -192,9 +447,77 @@
               <tr><td>Analog 1 Offset</td><td><input type='number' class='htInputField' step='0.001' id='inp_An1Off'></td></tr>
               <tr><td>Analog 2 Offset</td><td><input type='number' class='htInputField' step='0.001' id='inp_An2Off'></td></tr>
               <tr><td>Analog 3 Offset</td><td><input type='number' class='htInputField' step='0.001' id='inp_An3Off'></td></tr>
-              </table>
+              <tr><td>Auxilary Function 0 Channel</td>
+                <td>
+                  <select id="inp_Aux0Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>Auxilary Function 1 Channel</td>
+                <td>
+                  <select id="inp_Aux1Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>Auxilary Function 2 Channel</td>
+                <td>
+                  <select id="inp_Aux2Ch">
+                    <option value="-1">Disabled</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
           </div><br>
-
         </main>
       </div>
     </div>
