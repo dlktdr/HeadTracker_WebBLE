@@ -96,8 +96,14 @@ $("#bleconnect").on("click", function() {
 });
 
 $("#refreshValues").on('click', function() {
-  readValues(refreshStatus);
+  readValues(refreshStatus, refreshComplete);
+  $("#refreshSpinner").removeClass('d-none');
 });
+
+function refreshComplete()
+{
+  $("#refreshSpinner").addClass('d-none');
+}
 
 function refreshStatus(message)
 {
