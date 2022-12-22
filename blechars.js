@@ -78,6 +78,12 @@ let An2Off_promise;
 let An2Off_value;
 let An3Off_promise;
 let An3Off_value;
+let RotX_promise;
+let RotX_value;
+let RotY_promise;
+let RotY_value;
+let RotZ_promise;
+let RotZ_value;
 
 function updateFields()
 {
@@ -116,6 +122,9 @@ function updateFields()
   $("#inp_An1Off").val(An1Off_value);
   $("#inp_An2Off").val(An2Off_value);
   $("#inp_An3Off").val(An3Off_value);
+  $("#inp_RotX").val(RotX_value);
+  $("#inp_RotY").val(RotY_value);
+  $("#inp_RotZ").val(RotZ_value);
 }
 
 $('#inp_Rll_Min').on('change', function() {
@@ -327,6 +336,24 @@ $('#inp_An3Off').on('change', function() {
   new DataView(buffer).setFloat32(0, $('#inp_An3Off').val(), true)
   An3Off_promise.writeValue(buffer);
   updateParameter('An3Off',$('#inp_An3Off').val())
+});
+$('#inp_RotX').on('change', function() {
+  const buffer = new ArrayBuffer(4);
+  new DataView(buffer).setFloat32(0, $('#inp_RotX').val(), true)
+  RotX_promise.writeValue(buffer);
+  updateParameter('RotX',$('#inp_RotX').val())
+});
+$('#inp_RotY').on('change', function() {
+  const buffer = new ArrayBuffer(4);
+  new DataView(buffer).setFloat32(0, $('#inp_RotY').val(), true)
+  RotY_promise.writeValue(buffer);
+  updateParameter('RotY',$('#inp_RotY').val())
+});
+$('#inp_RotZ').on('change', function() {
+  const buffer = new ArrayBuffer(4);
+  new DataView(buffer).setFloat32(0, $('#inp_RotZ').val(), true)
+  RotZ_promise.writeValue(buffer);
+  updateParameter('RotZ',$('#inp_RotZ').val())
 });
 
 
@@ -683,8 +710,35 @@ function readValues(messageFunc, onCompleted) {
     An3Off_promise = characteristic;
     return An3Off_promise.readValue();
   })
-    .then(value => {
+  .then(value => {
+    messageFunc(' Got An3Off');
     An3Off_value = value.getFloat32(0, true).toFixed(3);
+    return radioService.getCharacteristic(0xF117); // Get RotX characteristic
+  })
+  .then(characteristic => {
+    RotX_promise = characteristic;
+    return RotX_promise.readValue();
+  })
+  .then(value => {
+    messageFunc(' Got RotX');
+    RotX_value = value.getFloat32(0, true).toFixed(3);
+    return radioService.getCharacteristic(0xF118); // Get RotY characteristic
+  })
+  .then(characteristic => {
+    RotY_promise = characteristic;
+    return RotY_promise.readValue();
+  })
+  .then(value => {
+    messageFunc(' Got RotY');
+    RotY_value = value.getFloat32(0, true).toFixed(3);
+    return radioService.getCharacteristic(0xF119); // Get RotZ characteristic
+  })
+  .then(characteristic => {
+    RotZ_promise = characteristic;
+    return RotZ_promise.readValue();
+  })
+    .then(value => {
+    RotZ_value = value.getFloat32(0, true).toFixed(3);
     messageFunc("Completed");
     if(onCompleted != null)
       onCompleted()
