@@ -28,3 +28,7 @@ body {
 .rangeTbl input {
     width: 100%;
 }
+
+.slider {
+  padding: 12px 0;
+}

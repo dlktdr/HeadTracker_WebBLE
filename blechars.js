@@ -79,6 +79,35 @@ let An2Off_value;
 let An3Off_promise;
 let An3Off_value;
 
+// you need write flowing code to buildwebblebtsettings.py
+const $sliderTilt = document.getElementById('slider-tilt');
+const $sliderRoll = document.getElementById('slider-roll');
+const $sliderPan = document.getElementById('slider-pan');
+
+$sliderTilt.addEventListener('change', (evt) => {
+  console.log(evt.detail.values);
+  let [min, cnt, max] = evt.detail.values
+  $('#inp_Tlt_Min').val(min).change()
+  $('#inp_Tlt_Cnt').val(cnt).change()
+  $('#inp_Tlt_Max').val(max).change()
+});
+
+$sliderRoll.addEventListener('change', (evt) => {
+  console.log(evt.detail.values);
+  let [min, cnt, max] = evt.detail.values
+  $('#inp_Rll_Min').val(min).change()
+  $('#inp_Rll_Cnt').val(cnt).change()
+  $('#inp_Rll_Max').val(max).change()
+});
+
+$sliderPan.addEventListener('change', (evt) => {
+  console.log(evt.detail.values);
+  let [min, cnt, max] = evt.detail.values
+  $('#inp_Pan_Min').val(min).change()
+  $('#inp_Pan_Cnt').val(cnt).change()
+  $('#inp_Pan_Max').val(max).change()
+});
+
 function updateFields()
 {
   $("#inp_Rll_Min").val(Rll_Min_value);
@@ -123,18 +152,21 @@ $('#inp_Rll_Min').on('change', function() {
   new DataView(buffer).setUint16(0, $('#inp_Rll_Min').val(), true)
   Rll_Min_promise.writeValue(buffer);
   updateParameter('Rll_Min',$('#inp_Rll_Min').val())
+  $sliderRoll.value1 = $('#inp_Rll_Min').val()
 });
 $('#inp_Rll_Max').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Rll_Max').val(), true)
   Rll_Max_promise.writeValue(buffer);
   updateParameter('Rll_Max',$('#inp_Rll_Max').val())
+  $sliderRoll.value3 = $('#inp_Rll_Max').val()
 });
 $('#inp_Rll_Cnt').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Rll_Cnt').val(), true)
   Rll_Cnt_promise.writeValue(buffer);
   updateParameter('Rll_Cnt',$('#inp_Rll_Cnt').val())
+  $sliderRoll.value2 = $('#inp_Rll_Cnt').val()
 });
 $('#inp_Rll_Gain').on('change', function() {
   const buffer = new ArrayBuffer(4);
@@ -147,18 +179,21 @@ $('#inp_Tlt_Min').on('change', function() {
   new DataView(buffer).setUint16(0, $('#inp_Tlt_Min').val(), true)
   Tlt_Min_promise.writeValue(buffer);
   updateParameter('Tlt_Min',$('#inp_Tlt_Min').val())
+  $sliderTilt.value1 = $('#inp_Tlt_Min').val()
 });
 $('#inp_Tlt_Max').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Tlt_Max').val(), true)
   Tlt_Max_promise.writeValue(buffer);
   updateParameter('Tlt_Max',$('#inp_Tlt_Max').val())
+  $sliderTilt.value3 = $('#inp_Tlt_Max').val()
 });
 $('#inp_Tlt_Cnt').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Tlt_Cnt').val(), true)
   Tlt_Cnt_promise.writeValue(buffer);
   updateParameter('Tlt_Cnt',$('#inp_Tlt_Cnt').val())
+  $sliderTilt.value2 = $('#inp_Tlt_Cnt').val()
 });
 $('#inp_Tlt_Gain').on('change', function() {
   const buffer = new ArrayBuffer(4);
@@ -171,18 +206,21 @@ $('#inp_Pan_Min').on('change', function() {
   new DataView(buffer).setUint16(0, $('#inp_Pan_Min').val(), true)
   Pan_Min_promise.writeValue(buffer);
   updateParameter('Pan_Min',$('#inp_Pan_Min').val())
+  $sliderPan.value1 = $('#inp_Pan_Min').val()
 });
 $('#inp_Pan_Max').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Pan_Max').val(), true)
   Pan_Max_promise.writeValue(buffer);
   updateParameter('Pan_Max',$('#inp_Pan_Max').val())
+  $sliderPan.value3 = $('#inp_Pan_Max').val()
 });
 $('#inp_Pan_Cnt').on('change', function() {
   const buffer = new ArrayBuffer(2);
   new DataView(buffer).setUint16(0, $('#inp_Pan_Cnt').val(), true)
   Pan_Cnt_promise.writeValue(buffer);
   updateParameter('Pan_Cnt',$('#inp_Pan_Cnt').val())
+  $sliderPan.value2 = $('#inp_Pan_Cnt').val()
 });
 $('#inp_Pan_Gain').on('change', function() {
   const buffer = new ArrayBuffer(4);
